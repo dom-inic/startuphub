@@ -1,0 +1,38 @@
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.css" %}">
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
+<link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/w3.css' %}" rel="stylesheet">
+</head>
+<nav>
+    <div class="container nav-wrapper">
+        <a href="/" class="brand-logo">Drestar.com</a>
+        <ul id="nav-mobile" class="right">
+            <li><a href="/">Home</a></li>
+            <li> <a href="#">startups</a></li>
+            <li> <a href="#">Motivation</a></li>
+            <li> <a href="#">About us</a></li>
+            <li> <a href="#">Contact us</a></li>
+            <li> <a href="#">Blog</a></li>
+            <li> <a href="# ">New startup</a></li>
+            
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock content %}
+<div class="w3-container w3-light-grey">
+  <h1 class="w3-jumbo">This is the comments and testimonials section</h1>
+  <p class="w3-xxlarge">Our partners</p>
+</div>
+
+<footer class="w3-container w3-deep-orange">
+  <h5>Drestar.com</h5>
+  <p>lets us connect you to investors</p>
+
+</footer>

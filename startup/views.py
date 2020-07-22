@@ -8,7 +8,7 @@ def index(response):
     return render(response, template_name)
 
 def startup_list(response):
-    headlines = Startup.objects.all() [::-1]
-    context = {'object_list': headlines}
+    startup = Startup.objects.order_by('date_added')
+    context = {'startup': startup}
     template_name = 'startup/index.html'
     return render(response, template_name, context)
