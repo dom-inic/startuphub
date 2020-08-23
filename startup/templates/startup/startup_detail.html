@@ -1,0 +1,61 @@
+{% extends 'startup/base.html' %}
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.css" %}">
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
+<link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/w3.css' %}" rel="stylesheet">
+</head>
+
+{% block content %}
+
+<!-- <h1> startup title: {{ startup.name }}</h1>
+<img src="{{ startup.image.url }} " alt="startup image">
+<p>{{ startup.description }}</p>
+<p>{{ startup.funding }}</p>
+<p> {{ startup.funding_reason }}</p>
+<p>{{ startup.location }}</p>
+<p>{{ startup.address }}</p>
+<p> {{ startup.email }}</p>
+<p> {{ startup.phone_no }}</p>
+<p> {{ startup.website }}</p>
+<button><a href="https://zoom.com">schedule meeting on zoom </a></button> -->
+
+<div class="w3-card-2">
+
+<header class="w3-container w3-light-grey">
+  <h3 style="text-align: center;"><b>{{ startup.name }}</b></h3>
+</header>
+
+<div class="w3-container">
+  <p>{{ startup.description }}</p>
+  <hr>
+  <img style="height: 400px; width: 500px; float: left;" src="{{ startup.image.url }}" alt="startup image" class=" w3-border w3-padding" >
+  <hr>
+  <div style="text-align: center;">
+  <p>{{ startup.funding }}</p>
+  <hr>
+  <p> {{ startup.funding_reason }}</p>
+  <hr>
+  <p>{{ startup.location }}</p>
+  <hr>
+  <p>{{ startup.address }}</p>
+  <hr>
+  <p> {{ startup.email }}</p>
+  <hr>
+  <p> {{ startup.phone_no }}</p>
+  <hr>
+  <p> {{ startup.website }}</p>
+  <hr>
+  </div>
+</div>
+
+<button class="w3-btn-block w3-dark-grey">+ Connect</button>
+<button class="w3-btn-block w3-red">Like</button>
+
+</div>
+
+
+{% endblock content %}

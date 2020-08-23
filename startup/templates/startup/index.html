@@ -7,6 +7,62 @@
 <link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
 <link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
 <link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+<link href="{% static "kejas/w3.css" %}" rel="stylesheet">
+<style type="text/css">
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #21D4FD;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    }
+    .box-wrapper{
+        width: 200px;
+        height: 200px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all ls ease;
+    }
+    .box-wrapper .box{
+        width: 52%;
+        height: 90%;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        transition: all .5s ease;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box-wrapper .box::before, .box-wrapper .box::after {
+        content: "";
+        position: absolute;
+        background: inherit;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        transition: all .5s ease;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .box-wrapper .box::before {
+        transform: rotateZ(60deg);
+    }
+    .box-wrapper .box::after {
+        transform: rotateZ(-60deg);
+    }
+    .box-wrapper .box:hover::before,
+    .box-wrapper .box:hover::after {
+        border-radius: 50px;
+    }
+    .box-wrapper:hover {
+        transform: rotateZ(180deg);
+    }
+</style>
 </head>
 {% block content %}
 <h1> welcome to the Drestar.com </h1>  
@@ -15,22 +71,24 @@
   <p class="w3-xxlarge">it will give a brief description of the platform </p>
 </div>
         <div class="row">
-        {% for object in startup %}
+        {% for startup in startups %}
             <div class="col s4">
                 <div class="large card">
                 <div class="card-title">
-                <i class="w3-animate-top" class="medium material-icons" style="color: #EE6E73"><b>Startup :</b>{{ object.name }}</i>
+                <i class="w3-animate-top" class="medium material-icons" style="color: #EE6E73"><b>Startup :</b>{{ startup.name }}</i>
                 </div>
                     <div class="card-image">
                      
-                     <h4><b>Location: </b> {{ object.location }} </h4>
-                     
-                        <img class="w3-animate-top" src="{{ object.image.url }}" alt="startup_image">
+                     <h4><b>Location: </b> {{ startup.location }} </h4>
+                        <a href="{% url 'detail' startup.id %}">
+                        <img style="height: 500px; width: 500px;" class="w3-animate-top" src="{{ startup.image.url }}" alt="startup_image">
+                        </a>
+                        
                     </div>
                     
                     <div class="divider"></div>
                     <div class="card-content">
-                        <p><b> Description:</b> {{ object.description }}</p>
+                        <p><b> Description:</b> {{ startup.description }}</p>
                         <p><b>Funding :</b>{{ object.funding }}</p>
                         <button class="btn-floating">Like</button>
                         <button class="btn-floating">invest</button>
@@ -44,4 +102,22 @@
             </div>
         {% endfor %}
     </div>
+
+    <div class="w3-center">
+<ul class="w3-pagination w3-xlarge w3-border">
+{% if startups.has_previous %}
+  <li><a href="?page=1" class="w3-hover-purple">&laquo; first</a></li>
+  <li><a href="?page={{ startups.previous_page_number }}" class="w3-hover-green">prev</a></li>
+  {% endif %}
+  <li>
+  Page {{ startups.number }} of {{ startups.paginator.num_pages }}
+  <li>
+  {% if startups.has_next %}
+  <li><a href="?page= {{ startups.next_page_number }}" class="w3-hover-red"> next</a></li>
+  <li><a href="?page= {{ startups.paginator.num_pages }}" class="w3-hover-blue">last &raquo;</a></li>
+{% endif %}
+  {% comment %} <li><a href="#" class="w3-hover-black">4</a></li>
+  <li><a href="#" class="w3-hover-orange">&raquo;</a></li> {% endcomment %}
+</ul>
+</div>
 {% endblock content %}

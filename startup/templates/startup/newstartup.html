@@ -1,0 +1,11 @@
+{% extends 'startup/base.html ' %}
+
+{% load static %}
+{% block content %}
+<form action="{% url 'addstartup' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+<button name="submit"><b>Add startup</b></button>
+	
+</form>
+{% endblock content %}
